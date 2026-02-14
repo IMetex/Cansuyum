@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 
-const MUSIC_SRC = '/Cansuyum.mp3'
+const MUSIC_SRC = `${import.meta.env.BASE_URL}Cansuyum.mp3`
 
 export default function MusicButton() {
     const [playing, setPlaying] = useState(false)
