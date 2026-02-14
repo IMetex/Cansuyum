@@ -1,5 +1,21 @@
 import { useState } from 'react'
 
+const WRONG_MESSAGES = [
+    'Hmm, beni biraz daha tanıman lazım 😏',
+    'Yanlış! Ama seni yine de seviyorum 😘',
+    'Bu kadar mı tanıyorsun beni? 🤨',
+    'Hayır canım, tekrar düşün! 😄',
+    'Ayyy yanlış! Ceza olarak bir öpücük 💋',
+]
+
+const CORRECT_MESSAGES = [
+    'Doğru! Beni çok iyi tanıyorsun 🥰',
+    'Aynen öyle! Sen benim ruh eşimsin 💫',
+    'Bildin Cansuyum! 💖',
+    'Mükemmel! Kalplerimiz aynı atıyor 💕',
+    'Harikasın! 🌹',
+]
+
 const QUESTIONS = [
     {
         question: 'Beni en mutlu eden hareketin hangisi? 🥰',
@@ -72,17 +88,24 @@ export default function LoveQuiz() {
     const [currentQ, setCurrentQ] = useState(0)
     const [score, setScore] = useState(0)
     const [selected, setSelected] = useState(null)
-    const [showResult, setShowResult] = useState(false)
+    const [feedback, setFeedback] = useState(null)
     const [finished, setFinished] = useState(false)
 
     const question = QUESTIONS[currentQ]
+
+    const pickRandom = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
     const handleSelect = (index) => {
         if (selected !== null) return
         setSelected(index)
 
         const isCorrect = index === question.correct
-        if (isCorrect) setScore((s) => s + 1)
+        if (isCorrect) {
+            setScore((s) => s + 1)
+            setFeedback(pickRandom(CORRECT_MESSAGES))
+        } else {
+            setFeedback(pickRandom(WRONG_MESSAGES))
+        }
 
         if (navigator.vibrate) navigator.vibrate(isCorrect ? [30, 20, 30] : 20)
 
@@ -90,17 +113,18 @@ export default function LoveQuiz() {
             if (currentQ + 1 < QUESTIONS.length) {
                 setCurrentQ((q) => q + 1)
                 setSelected(null)
+                setFeedback(null)
             } else {
                 setFinished(true)
             }
-        }, 1200)
+        }, 1800)
     }
 
     const handleReset = () => {
         setCurrentQ(0)
         setScore(0)
         setSelected(null)
-        setShowResult(false)
+        setFeedback(null)
         setFinished(false)
     }
 
@@ -143,6 +167,11 @@ export default function LoveQuiz() {
                                     )
                                 })}
                             </div>
+                            {feedback && (
+                                <p className={`quiz-feedback ${selected !== null && selected === question.correct ? 'correct' : 'wrong'}`}>
+                                    {feedback}
+                                </p>
+                            )}
                         </div>
                     </>
                 )}
