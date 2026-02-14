@@ -11,6 +11,7 @@ import Constellation from './components/Constellation.jsx'
 import ReasonsToLove from './components/ReasonsToLove.jsx'
 import LoveTimeline from './components/LoveTimeline.jsx'
 import ScratchCard from './components/ScratchCard.jsx'
+import LoveQuiz from './components/LoveQuiz.jsx'
 import LoveCoupons from './components/LoveCoupons.jsx'
 import LoveMeter from './components/LoveMeter.jsx'
 import CountdownTimer from './components/CountdownTimer.jsx'
@@ -61,6 +62,10 @@ export default function App() {
 
                         <RevealSection>
                             <ScratchCard />
+                        </RevealSection>
+
+                        <RevealSection>
+                            <LoveQuiz />
                         </RevealSection>
 
                         <RevealSection>
