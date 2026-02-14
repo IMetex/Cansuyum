@@ -2086,3 +2086,110 @@ body {
         transition-duration: 0.01ms !important;
     }
 }
+/* =========================================================
+   LOVE QUIZ
+   ========================================================= */
+.quiz-section {
+    margin-top: 28px;
+}
+
+.quiz-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(32px) saturate(130%);
+    -webkit-backdrop-filter: blur(32px) saturate(130%);
+    border-radius: var(--card-radius);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--card-shadow);
+    padding: 36px 24px;
+}
+
+.quiz-title {
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.quiz-progress {
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.quiz-live-note {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+    font-size: 0.95rem;
+}
+
+.quiz-question {
+    font-size: 1.12rem;
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.quiz-options {
+    display: grid;
+    gap: 10px;
+}
+
+.quiz-option,
+.quiz-next-btn {
+    width: 100%;
+    border: 1px solid rgba(244, 114, 182, 0.26);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-primary);
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-family: var(--font-ui);
+    font-size: 0.98rem;
+    cursor: pointer;
+    transition: all 220ms var(--ease);
+}
+
+.quiz-option:hover,
+.quiz-next-btn:hover:not(:disabled) {
+    border-color: rgba(244, 114, 182, 0.6);
+    transform: translateY(-1px);
+}
+
+.quiz-option.correct {
+    border-color: rgba(74, 222, 128, 0.75);
+    background: rgba(74, 222, 128, 0.16);
+}
+
+.quiz-option.wrong {
+    border-color: rgba(248, 113, 113, 0.8);
+    background: rgba(248, 113, 113, 0.18);
+}
+
+.quiz-next-btn {
+    margin-top: 14px;
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.2), rgba(225, 29, 72, 0.2));
+}
+
+.quiz-next-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.quiz-result {
+    text-align: center;
+}
+
+.quiz-score {
+    font-size: 1.22rem;
+    margin-bottom: 8px;
+}
+
+.quiz-result-text {
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+}
+
+@media (max-width: 600px) {
+    .quiz-card {
+        padding: 28px 16px;
+        border-radius: 20px;
+    }
+}

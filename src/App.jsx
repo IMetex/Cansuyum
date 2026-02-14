@@ -16,6 +16,7 @@ import LoveMeter from './components/LoveMeter.jsx'
 import CountdownTimer from './components/CountdownTimer.jsx'
 import WishSection from './components/WishSection.jsx'
 import RevealSection from './components/RevealSection.jsx'
+import LoveQuiz from './components/LoveQuiz.jsx'
 
 export default function App() {
     const [phase, setPhase] = useState('envelope') // 'envelope' | 'hiding' | 'letter'
@@ -45,6 +46,10 @@ export default function App() {
                     <>
                         <RevealSection>
                             <LoveLetter />
+                        </RevealSection>
+
+                        <RevealSection>
+                            <LoveQuiz />
                         </RevealSection>
 
                         <RevealSection>
