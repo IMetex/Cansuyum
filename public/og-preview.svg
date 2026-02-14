@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0406"/>
+      <stop offset="50%" stop-color="#1a0810"/>
+      <stop offset="100%" stop-color="#0a0406"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6"/>
+      <stop offset="50%" stop-color="#e11d48"/>
+      <stop offset="100%" stop-color="#d4a843"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="bigGlow">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <!-- Subtle circles -->
+  <circle cx="200" cy="400" r="200" fill="#e11d48" opacity="0.03"/>
+  <circle cx="1000" cy="200" r="250" fill="#d4a843" opacity="0.025"/>
+  <!-- Heart glow -->
+  <path d="M600 380 C575 340, 520 310, 520 270 A50 50 0 0 1 600 240 A50 50 0 0 1 680 270 C680 310, 625 340, 600 380Z" fill="#f472b6" opacity="0.15" filter="url(#bigGlow)"/>
+  <!-- Heart -->
+  <path d="M600 380 C575 340, 520 310, 520 270 A50 50 0 0 1 600 240 A50 50 0 0 1 680 270 C680 310, 625 340, 600 380Z" fill="url(#heart)" filter="url(#glow)"/>
+  <!-- Sparkles -->
+  <text x="540" y="260" font-size="16" fill="#fce4ec" opacity="0.6">✦</text>
+  <text x="650" y="250" font-size="12" fill="#d4a843" opacity="0.5">✦</text>
+  <text x="500" y="300" font-size="10" fill="#f472b6" opacity="0.4">✦</text>
+  <text x="690" y="290" font-size="14" fill="#fce4ec" opacity="0.5">✦</text>
+  <!-- Title -->
+  <text x="600" y="460" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#fce4ec" font-style="italic">Sana Bir Sürprizim Var</text>
+  <!-- Subtitle -->
+  <text x="600" y="500" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#f472b6" opacity="0.7">🌹 Cansuyum 🌹</text>
+  <!-- Bottom line -->
+  <line x1="450" y1="530" x2="750" y2="530" stroke="#d4a843" stroke-width="0.5" opacity="0.3"/>
+  <text x="600" y="560" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#d4a843" opacity="0.4">Sevgililer Günü Özel</text>
+</svg>
