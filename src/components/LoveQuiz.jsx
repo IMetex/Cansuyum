@@ -1,39 +1,70 @@
 import { useState } from 'react'
 
+const WRONG_MESSAGES = [
+    'Hmm, beni biraz daha tanıman lazım 😏',
+    'Yanlış! Ama seni yine de seviyorum 😘',
+    'Bu kadar mı tanıyorsun beni? 🤨',
+    'Hayır canım, tekrar düşün! 😄',
+    'Ayyy yanlış! Ceza olarak bir öpücük 💋',
+]
+
+const CORRECT_MESSAGES = [
+    'Doğru! Beni çok iyi tanıyorsun 🥰',
+    'Aynen öyle! Sen benim ruh eşimsin 💫',
+    'Bildin Cansuyum! 💖',
+    'Mükemmel! Kalplerimiz aynı atıyor 💕',
+    'Harikasın! 🌹',
+]
+
 const QUESTIONS = [
     {
-        question: 'Beni en mutlu eden hareketin hangisi? 🥰',
-        options: ['Sarılman', 'Gülümsemen', 'Elimi tutman', 'Hepsi'],
-        correct: 3,
+        question: 'Beni en hızlı "aşk moduna" sokan şey ne? 💘',
+        options: ['Sarılman', 'Gözlerimin içine bakman', 'Tatlı bir mesaj atman', 'Alnımdan öpmen'],
+        correct: 1,
     },
     {
-        question: 'Sence seni en çok ne zaman seviyorum? 💕',
-        options: ['Uyurken', 'Gülerken', 'Kızınca', 'Her an'],
-        correct: 3,
+        question: 'Benim en sevdiğim "biz anımız" hangisi? 🥰',
+        options: ['İlk buluşmamız', 'İlk sarılmamız', 'İlk uzun sohbetimiz', 'İlk "iyi geceler"imiz'],
+        correct: 0,
     },
     {
-        question: 'Beraber en çok ne yapmayı seviyoruz? 🎬',
-        options: ['Film izlemek', 'Yürüyüş yapmak', 'Konuşmak', 'Sarılmak'],
+        question: 'Beni kıskandırmak istersen en çok hangisi işe yarar? 😏',
+        options: ['Soğuk davranman', 'Başka biriyle çok gülmen', 'Geç cevap vermen', 'İlgini azaltman'],
         correct: 2,
     },
     {
-        question: 'İlişkimizde en önemli şey ne? ❤️',
-        options: ['Güven', 'Saygı', 'Aşk', 'Hepsi birden'],
-        correct: 3,
+        question: 'Benim "sana en çok yakışıyor" dediğim şey ne? 🌹',
+        options: ['Gülüşün', 'Kokun', 'Bakışın', 'Sesin'],
+        correct: 0,
     },
     {
-        question: 'Sana ilk ne zaman aşık oldum? ⚡',
-        options: ['İlk görüşte', 'İlk konuşmada', 'İlk gülüşünde', 'Hepsinde biraz biraz'],
+        question: 'Bir gün boyunca sadece bir şey yapacak olsak, ben en çok ne isterim? 💑',
+        options: ['Beraber yemek yapmak', 'Film + battaniye', 'Gezmek ve bol fotoğraf', 'Uzun uzun sarılmak'],
+        correct: 1,
+    },
+    {
+        question: 'Benim en sevdiğim öpücük hangisi? 💋',
+        options: ['Alından', 'Yanak', 'Dudak', 'El'],
         correct: 2,
     },
     {
-        question: 'Sensiz en zor geçen an hangisi? 🥺',
-        options: ['Sabahlar', 'Geceler', 'Öğlen araları', 'Her an zor'],
+        question: 'Beni en çok "benim" hissettiren cümle hangisi? 💞',
+        options: ['Seni seviyorum', 'Ben buradayım', 'İyi ki varsın', 'Cansuyummmm'],
         correct: 3,
     },
     {
-        question: 'Gelecekte beraber ne yapmak istiyorum? 🌟',
-        options: ['Seyahat etmek', 'Yuva kurmak', 'Yaşlanmak', 'Hepsini seninle'],
+        question: 'Benimle ilgili en tatlı alışkanlığın hangisi? 😍',
+        options: ['Beni uyandırışın', 'Üstümü örtmen', 'Saçımla oynaman', 'Durduk yere öpmen'],
+        correct: 2,
+    },
+    {
+        question: 'Bizim "imza" planımız hangisi? ✨',
+        options: ['Gece yürüyüşü', 'Kafede uzun sohbet', 'Evde kahve + müzik', 'Sürpriz buluşma'],
+        correct: 0,
+    },
+    {
+        question: 'Ben seni en çok ne zaman özlüyorum? 🫶',
+        options: ['Gece yatarken', 'Sabah uyanınca', 'Gün içinde bir şey görünce', 'Her an'],
         correct: 3,
     },
 ]
@@ -72,17 +103,24 @@ export default function LoveQuiz() {
     const [currentQ, setCurrentQ] = useState(0)
     const [score, setScore] = useState(0)
     const [selected, setSelected] = useState(null)
-    const [showResult, setShowResult] = useState(false)
+    const [feedback, setFeedback] = useState(null)
     const [finished, setFinished] = useState(false)
 
     const question = QUESTIONS[currentQ]
+
+    const pickRandom = (arr) => arr[Math.floor(Math.random() * arr.length)]
 
     const handleSelect = (index) => {
         if (selected !== null) return
         setSelected(index)
 
         const isCorrect = index === question.correct
-        if (isCorrect) setScore((s) => s + 1)
+        if (isCorrect) {
+            setScore((s) => s + 1)
+            setFeedback(pickRandom(CORRECT_MESSAGES))
+        } else {
+            setFeedback(pickRandom(WRONG_MESSAGES))
+        }
 
         if (navigator.vibrate) navigator.vibrate(isCorrect ? [30, 20, 30] : 20)
 
@@ -90,17 +128,18 @@ export default function LoveQuiz() {
             if (currentQ + 1 < QUESTIONS.length) {
                 setCurrentQ((q) => q + 1)
                 setSelected(null)
+                setFeedback(null)
             } else {
                 setFinished(true)
             }
-        }, 1200)
+        }, 1800)
     }
 
     const handleReset = () => {
         setCurrentQ(0)
         setScore(0)
         setSelected(null)
-        setShowResult(false)
+        setFeedback(null)
         setFinished(false)
     }
 
@@ -143,6 +182,11 @@ export default function LoveQuiz() {
                                     )
                                 })}
                             </div>
+                            {feedback && (
+                                <p className={`quiz-feedback ${selected !== null && selected === question.correct ? 'correct' : 'wrong'}`}>
+                                    {feedback}
+                                </p>
+                            )}
                         </div>
                     </>
                 )}
