@@ -1,60 +1,34 @@
-import { useState, useRef, useEffect } from 'react'
-
-const MUSIC_SRC = `${import.meta.env.BASE_URL}Cansuyum.mp3`
+import { useState, useRef } from 'react'
 
 export default function MusicButton() {
     const [playing, setPlaying] = useState(false)
     const audioRef = useRef(null)
 
-    useEffect(() => {
-        const audio = new Audio(MUSIC_SRC)
-        audio.loop = true // Otomatik döngü
-        audio.volume = 0.6 // Ses seviyesi
-
-        // Müzik bittiğinde tekrar baştan başlat (loop çalışmazsa yedek)
-        audio.addEventListener('ended', () => {
-            audio.currentTime = 0
-            audio.play().catch(e => console.error("Replay error:", e))
-        })
-
-        // Hata yönetimi
-        audio.addEventListener('error', (e) => {
-            console.warn("Müzik hatası:", e)
-        })
-
-        audioRef.current = audio
-
-        return () => {
-            audio.pause()
-            audio.src = ''
+    const getAudio = () => {
+        if (!audioRef.current) {
+            const audio = new Audio(`${import.meta.env.BASE_URL}Cansuyum.mp3`)
+            audio.loop = true
+            audio.volume = 0.6
+            audio.preload = 'auto'
+            audioRef.current = audio
         }
-    }, [])
+        return audioRef.current
+    }
 
-    const toggle = () => {
-        const audio = audioRef.current
-        if (!audio) return
+    const toggle = async () => {
+        const audio = getAudio()
 
         if (playing) {
-            // Durdurulduğunda: Pause yap ve başa sar
             audio.pause()
-            audio.currentTime = 0
             setPlaying(false)
         } else {
-            // Başlatıldığında: Baştan çal
-            // (Eğer pause sonrası devam etmesini istersen currentTime=0 satırını kaldırabilirsin, 
-            // ama isteğin "durdurulduğunda en baştan başlasın" yönündeydi)
-            audio.currentTime = 0
-
-            const playPromise = audio.play()
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        setPlaying(true)
-                    })
-                    .catch((error) => {
-                        console.warn("Otomatik oynatma engellendi:", error)
-                        setPlaying(false)
-                    })
+            try {
+                audio.currentTime = 0
+                await audio.play()
+                setPlaying(true)
+            } catch (err) {
+                console.warn('Müzik çalınamadı:', err)
+                setPlaying(false)
             }
         }
     }
@@ -63,7 +37,7 @@ export default function MusicButton() {
         <button
             className={`music-btn ${playing ? 'playing' : ''}`}
             onClick={toggle}
-            title={playing ? "Müziği Durdur" : "Müziği Başlat"}
+            title={playing ? 'Müziği Durdur' : 'Müziği Başlat'}
         >
             {playing ? '🎵' : '🔇'}
         </button>
