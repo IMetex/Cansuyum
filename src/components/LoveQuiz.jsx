@@ -18,38 +18,53 @@ const CORRECT_MESSAGES = [
 
 const QUESTIONS = [
     {
-        question: 'Beni en mutlu eden hareketin hangisi? 🥰',
-        options: ['Sarılman', 'Gülümsemen', 'Elimi tutman', 'Hepsi'],
-        correct: 3,
+        question: 'Beni en hızlı "aşk moduna" sokan şey ne? 💘',
+        options: ['Sarılman', 'Gözlerimin içine bakman', 'Tatlı bir mesaj atman', 'Alnımdan öpmen'],
+        correct: 1,
     },
     {
-        question: 'Sence seni en çok ne zaman seviyorum? 💕',
-        options: ['Uyurken', 'Gülerken', 'Kızınca', 'Her an'],
-        correct: 3,
+        question: 'Benim en sevdiğim "biz anımız" hangisi? 🥰',
+        options: ['İlk buluşmamız', 'İlk sarılmamız', 'İlk uzun sohbetimiz', 'İlk "iyi geceler"imiz'],
+        correct: 0,
     },
     {
-        question: 'Beraber en çok ne yapmayı seviyoruz? 🎬',
-        options: ['Film izlemek', 'Yürüyüş yapmak', 'Konuşmak', 'Sarılmak'],
+        question: 'Beni kıskandırmak istersen en çok hangisi işe yarar? 😏',
+        options: ['Soğuk davranman', 'Başka biriyle çok gülmen', 'Geç cevap vermen', 'İlgini azaltman'],
         correct: 2,
     },
     {
-        question: 'İlişkimizde en önemli şey ne? ❤️',
-        options: ['Güven', 'Saygı', 'Aşk', 'Hepsi birden'],
-        correct: 3,
+        question: 'Benim "sana en çok yakışıyor" dediğim şey ne? 🌹',
+        options: ['Gülüşün', 'Kokun', 'Bakışın', 'Sesin'],
+        correct: 0,
     },
     {
-        question: 'Sana ilk ne zaman aşık oldum? ⚡',
-        options: ['İlk görüşte', 'İlk konuşmada', 'İlk gülüşünde', 'Hepsinde biraz biraz'],
+        question: 'Bir gün boyunca sadece bir şey yapacak olsak, ben en çok ne isterim? 💑',
+        options: ['Beraber yemek yapmak', 'Film + battaniye', 'Gezmek ve bol fotoğraf', 'Uzun uzun sarılmak'],
+        correct: 1,
+    },
+    {
+        question: 'Benim en sevdiğim öpücük hangisi? 💋',
+        options: ['Alından', 'Yanak', 'Dudak', 'El'],
         correct: 2,
     },
     {
-        question: 'Sensiz en zor geçen an hangisi? 🥺',
-        options: ['Sabahlar', 'Geceler', 'Öğlen araları', 'Her an zor'],
+        question: 'Beni en çok "benim" hissettiren cümle hangisi? 💞',
+        options: ['Seni seviyorum', 'Ben buradayım', 'İyi ki varsın', 'Cansuyummmm'],
         correct: 3,
     },
     {
-        question: 'Gelecekte beraber ne yapmak istiyorum? 🌟',
-        options: ['Seyahat etmek', 'Yuva kurmak', 'Yaşlanmak', 'Hepsini seninle'],
+        question: 'Benimle ilgili en tatlı alışkanlığın hangisi? 😍',
+        options: ['Beni uyandırışın', 'Üstümü örtmen', 'Saçımla oynaman', 'Durduk yere öpmen'],
+        correct: 2,
+    },
+    {
+        question: 'Bizim "imza" planımız hangisi? ✨',
+        options: ['Gece yürüyüşü', 'Kafede uzun sohbet', 'Evde kahve + müzik', 'Sürpriz buluşma'],
+        correct: 0,
+    },
+    {
+        question: 'Ben seni en çok ne zaman özlüyorum? 🫶',
+        options: ['Gece yatarken', 'Sabah uyanınca', 'Gün içinde bir şey görünce', 'Her an'],
         correct: 3,
     },
 ]
