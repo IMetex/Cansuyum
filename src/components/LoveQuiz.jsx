@@ -2,29 +2,54 @@ import { useState } from 'react'
 
 const QUESTIONS = [
     {
-        question: 'En sevdiğim renk hangisi?',
-        options: ['Mavi', 'Kırmızı', 'Siyah', 'Yeşil'],
+        question: 'Beni en hızlı “aşk moduna” sokan şey ne? 💘',
+        options: ['Sarılman', 'Gözlerimin içine bakman', 'Tatlı bir mesaj atman', 'Alnımdan öpmen'],
+        correct: 1,
+    },
+    {
+        question: 'Benim en sevdiğim “biz anımız” hangisi? 🥰',
+        options: ['Buluşmamız', 'Sarılmamız', 'Uzun sohbetimiz', 'İyi geceler”imiz'],
         correct: 0,
     },
     {
-        question: 'Beni en çok mutlu eden şey ne?',
-        options: ['Hediye almak', 'Seninle vakit geçirmek', 'Uyumak', 'Yemek yemek'],
-        correct: 1,
-    },
-    {
-        question: 'En sevdiğim yemek?',
-        options: ['Pizza', 'Lahmacun', 'Mantı', 'Karnıyarık'],
+        question: 'Beni kıskandırmak istersen en çok hangisi işe yarar? 😏',
+        options: ['Soğuk davranman', 'Başka biriyle çok gülmen', 'Geç cevap vermen', 'İlgini azaltman'],
         correct: 2,
     },
     {
-        question: 'Sana ilk ne demiştim?',
-        options: ['Merhaba', 'Tanışabilir miyiz?', 'Selam güzellik', 'Gülümsemen çok güzel'],
+        question: 'Benim “sana en çok yakışıyor” dediğim şey ne? 🌹',
+        options: ['Gülüşün', 'Kokun', 'Bakışın', 'Sesin'],
         correct: 3,
     },
     {
-        question: 'Hayalimdeki tatil yeri neresi?',
-        options: ['Paris', 'Maldivler', 'Kapadokya', 'Tokyo'],
+        question: 'Bir gün boyunca sadece bir şey yapacak olsak, ben en çok ne isterim? 💑',
+        options: ['Beraber yemek yapmak', 'Film + battaniye', 'Gezmek ve bol fotoğraf', 'Uzun uzun sarılmak'],
+        correct: 2,
+    },
+    {
+        question: 'Benim en sevdiğim öpücük hangisi? 💋',
+        options: ['Alından', 'Yanak', 'Dudak', 'Boyundan'],
+        correct: 4,
+    },
+    {
+        question: 'Beni en çok “benim” hissettiren cümle hangisi? 💞',
+        options: ['Seni seviyorumm', 'Cansuyumm', 'İyi ki varsın', 'Yavrumm'],
+        correct: 2,
+    },
+    {
+        question: 'Benimle ilgili en tatlı alışkanlığın hangisi? 😍',
+        options: ['Beni uyandırışın', 'Üstümü örtmen', 'Saçımla oynaman', 'Durduk yere öpmen'],
+        correct: 3,
+    },
+    {
+        question: 'Bizim “imza” planımız hangisi? ✨',
+        options: ['Gece yürüyüşü', 'Kafede uzun sohbet', 'Evde kahve + müzik', 'Sürpriz buluşma'],
         correct: 1,
+    },
+    {
+        question: 'Ben seni en çok ne zaman özlüyorum? 🫶',
+        options: ['Gece yatarken', 'Sabah uyanınca', 'Gün içinde bir şey görünce', 'Her an'],
+        correct: 4,
     },
 ]
 
@@ -168,12 +193,12 @@ export default function LoveQuiz() {
                         <button
                             key={i}
                             className={`quiz-option ${showResult
-                                    ? i === question.correct
-                                        ? 'correct'
-                                        : i === selected
-                                            ? 'wrong'
-                                            : ''
-                                    : ''
+                                ? i === question.correct
+                                    ? 'correct'
+                                    : i === selected
+                                        ? 'wrong'
+                                        : ''
+                                : ''
                                 } ${selected === i ? 'selected' : ''}`}
                             onClick={() => handleAnswer(i)}
                             disabled={selected !== null}
